@@ -16,7 +16,7 @@ class number_of_day(models.Model):
 class number_of_trip(models.Model):
     value = models.IntegerField(null=True,blank=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.value
 
 class tarif(models.Model):
@@ -24,7 +24,7 @@ class tarif(models.Model):
     number_of_trip_id = models.ForeignKey(number_of_trip,  blank=True, null=True, on_delete=models.SET_NULL)
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
-    def __str__(self):
+    def __decimal__(self):
         return self.price
 
 
