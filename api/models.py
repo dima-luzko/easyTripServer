@@ -10,7 +10,7 @@ class transport(models.Model):
 class number_of_day(models.Model):
     value = models.IntegerField(null=True,blank=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.value
 
 class number_of_trip(models.Model):
