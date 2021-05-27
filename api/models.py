@@ -39,9 +39,9 @@ class transaction(models.Model):
     tarif_id = models.ForeignKey(tarif, on_delete=models.CASCADE)
     start_data = models.DateField(null=True,blank=True)
     finish_data = models.DateField(null=True,blank=True)
-    number_of_trip_left = models.IntegerField(null=True)
+    number_of_trip_left = models.IntegerField(null=True,blank=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.number_of_trip_left
 
 class transport_tarif(models.Model):

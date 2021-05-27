@@ -34,4 +34,4 @@ class admin_transaction(admin.ModelAdmin):
 
 @admin.register(transport_tarif)
 class admin_transport_tarif(admin.ModelAdmin):
-    ordering = ['transport_id']
+    ordering = ['id']
