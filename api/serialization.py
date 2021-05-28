@@ -44,21 +44,21 @@ class change_transport_tarif(RelatedField):
 
 
 
-# class ser_transaction(ModelSerializer):
-#     tarif_id = ser_tarif() 
-#     transport_tarif = ser_transport_tarif(read_only=True, many=True)
-
-#     class Meta:
-#         model = transaction
-#         fields = ['transport_tarif', 'tarif_id']
-
 class ser_transaction(ModelSerializer):
-    tarif_id = change_transport_tarif(read_only=True, many=True)
-    #transport_tarif = change_transport_tarif(read_only=True, many=True)
-    
+    tarif_id = ser_tarif() 
+    transport_tarif = ser_transport_tarif(read_only=True, many=True)
 
     class Meta:
         model = transaction
-        fields = ['tarif_id']
+        fields = '__all__'
+
+# class ser_transaction(ModelSerializer):
+#     tarif_id = change_transport_tarif(read_only=True, many=True)
+#     #transport_tarif = change_transport_tarif(read_only=True, many=True)
+    
+
+#     class Meta:
+#         model = transaction
+#         fields = ['tarif_id']
 
     
