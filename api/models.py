@@ -23,6 +23,7 @@ class tarif(models.Model):
     number_of_day_id = models.ForeignKey(number_of_day,  blank=True, null=True, on_delete=models.SET_NULL)
     number_of_trip_id = models.ForeignKey(number_of_trip,  blank=True, null=True, on_delete=models.SET_NULL)
     price = models.DecimalField(max_digits=5, decimal_places=2)
+    transports = models.ManyToManyField(transport)
 
     def __decimal__(self):
         return self.price
@@ -43,7 +44,3 @@ class transaction(models.Model):
 
     def __int__(self):
         return self.number_of_trip_left
-
-class transport_tarif(models.Model):
-    transport_id = models.ManyToManyField(transport)
-    tarif_id = models.ManyToManyField(tarif)

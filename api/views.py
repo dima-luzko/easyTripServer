@@ -6,20 +6,10 @@ from rest_framework.decorators import api_view
 
 # Create your views here.
 
-class CardView(generics.ListAPIView):
-    queryset = card.objects.all()
-    serializer_class = ser_card
-
 class CardByNameView(generics.ListAPIView):
     serializer_class = ser_card
 
-    # def get_queryset(request, card_number=None):
-    #     cards = card.object.get(number=number)
-    #     card_number = request.GET('card_number')
-
     def get_queryset(self):
-        # print(self.kwargs['card_number'])
-        # print(card.objects.filter(number=self.kwargs['card_number']).distinct())
         return card.objects.filter(number=self.kwargs['card_number']).distinct()
 
 class TransportView(generics.ListAPIView):
@@ -30,17 +20,24 @@ class TransportIdView(generics.RetrieveAPIView):
     queryset = transport.objects.all().order_by('name')
     serializer_class = ser_transport
 
-class TransactionView(generics.ListAPIView):
-    queryset = transaction.objects.all()
-    serializer_class = ser_transaction
-
-class TransactionViewID(generics.ListAPIView):
-    # queryset = transaction.objects.all()
+class TransactionsOfCardView(generics.ListAPIView):
     serializer_class = ser_transaction
 
     def get_queryset(self):
-        # print(self.kwargs['card_number'])
-        # print(card.objects.filter(number=self.kwargs['card_number']).distinct())
         return transaction.objects.filter(card_id=self.kwargs['card']).distinct()
+
+class NumberOfDaysView(generics.ListAPIView):
+    queryset = number_of_day.objects.all()
+    serializer_class = ser_number_of_day
+
+class NumberOfTripsView(generics.ListAPIView):
+    queryset = number_of_trip.objects.all()
+    serializer_class = ser_number_of_trip
+
+class NumberOfDayIDView(generics.ListAPIView):
+    serializer_class = ser_tarif
+
+    def get_queryset(self):
+        return tarif.objects.filter(number_of_day_id=self.kwargs['number_of_day_id']).distinct()
 
     

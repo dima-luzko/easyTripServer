@@ -19,8 +19,11 @@ class admin_number_of_trip(admin.ModelAdmin):
 
 @admin.register(tarif)
 class admin_tarif(admin.ModelAdmin):
-    list_display = ("id","number_of_day_id","number_of_trip_id","price")
+    list_display = ("id","number_of_day_id","number_of_trip_id","price","get_transports")
     ordering = ['id']
+
+    def get_transports(self,obj):
+        return ", ".join([str(p) for p in obj.transports.all()])
 
 @admin.register(card)
 class admin_card(admin.ModelAdmin):
@@ -30,8 +33,4 @@ class admin_card(admin.ModelAdmin):
 @admin.register(transaction)
 class admin_transaction(admin.ModelAdmin):
     list_display = ("id","card_id","tarif_id","start_data","finish_data","number_of_trip_left")
-    ordering = ['id']
-
-@admin.register(transport_tarif)
-class admin_transport_tarif(admin.ModelAdmin):
     ordering = ['id']
