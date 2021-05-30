@@ -34,7 +34,7 @@ class NumberOfTripsView(generics.ListAPIView):
     queryset = number_of_trip.objects.all()
     serializer_class = ser_number_of_trip
 
-class NumberOfDayIDView(generics.ListAPIView):
+class NumberOfDaysTarifView(generics.ListAPIView):
     serializer_class = ser_tarif
 
     def get_queryset(self):
