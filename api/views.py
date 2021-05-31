@@ -3,6 +3,8 @@ from api.serialization import *
 from api.models import *
 from rest_framework import generics
 from rest_framework.decorators import api_view
+import simplejson as json
+from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
 
@@ -34,10 +36,15 @@ class NumberOfTripsView(generics.ListAPIView):
     queryset = number_of_trip.objects.all()
     serializer_class = ser_number_of_trip
 
-class NumberOfDaysTarifView(generics.ListAPIView):
+
+class NumberOfDaysTarifView(generics.CreateAPIView):
     serializer_class = ser_tarif
 
-    def get_queryset(self):
-        return tarif.objects.filter(number_of_day_id=self.kwargs['number_of_day_id']).distinct()
+    def post(self, request, *args, **kwargs):
+        received_json_data = json.loads(request.body.decode("utf-8"))
+        # queryset1 = transport.objects.filter(id__in=)
+        queryset = tarif.objects.filter(number_of_day_id=received_json_data["number_of_day_id"],transports=received_json_data["transport"])
+        data = [entry for entry in queryset.values()]
+        json_data = json.dumps(data)
 
-    
+        return HttpResponse(json_data, content_type="application/json")
