@@ -43,8 +43,18 @@ class NumberOfDaysTarifView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         received_json_data = json.loads(request.body.decode("utf-8"))
         # queryset1 = transport.objects.filter(id__in=)
-        queryset = tarif.objects.filter(number_of_day_id=received_json_data["number_of_day_id"],transports=received_json_data["transport"])
+        queryset = tarif.objects.filter(number_of_day_id=received_json_data["number_of_day_id"]).filter(transports=received_json_data["transport"])
         data = [entry for entry in queryset.values()]
         json_data = json.dumps(data)
 
         return HttpResponse(json_data, content_type="application/json")
+
+
+# select tf.price from api_tarif tf
+# inner join api_tarif_transports tt on tf.id = tt.tarif_id
+# inner join api_transport tp on tt.transport_id = tp.id
+# where tf.number_of_day_id_id = 5 
+# and tp.id in (1,2,6) 
+# and tf.id not in (select tarif_id from api_tarif_transports where transport_id not in (1,2,6))
+# group by tf.id
+# having count(*) = 3;
