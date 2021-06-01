@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^number_of_days/$', NumberOfDaysView.as_view(), name='number_of_days'),
     url(r'^number_of_trips/$', NumberOfTripsView.as_view(), name='number_of_trips'),
 
-    url(r'^number_of_days_tarif/number_of_day_id/transports/$', NumberOfDaysTarifView.as_view(), name='number_of_day_id'),
+    url(r'^number_of_days_tarif/number_of_day_id/transports/?$',NumberOfDaysTarif1, name='number_of_day_id'),
 ]
    
 
