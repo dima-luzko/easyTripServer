@@ -41,6 +41,13 @@ class NumberOfTripsView(generics.ListAPIView):
     queryset = number_of_trip.objects.all()
     serializer_class = ser_number_of_trip
 
+
+# json example:
+# {
+#     "number_of_day_id": 5,
+#     "transports": [1,2,6],
+#     "count": 3
+# }
 @csrf_exempt
 def NumberOfDaysTarif(request):
      if request.method == "POST":
@@ -65,6 +72,13 @@ def NumberOfDaysTarif(request):
         json_data1 = jsonpickle.decode(json_data)
         return HttpResponse(json_data1, content_type="application/json")
 
+
+# json example:
+# {
+#     "number_of_trip_id": 5,
+#     "transports": [1,2,6],
+#     "count": 3
+# }
 @csrf_exempt
 def NumberOfTripTarif(request):
      if request.method == "POST":

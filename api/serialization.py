@@ -19,7 +19,7 @@ class ser_number_of_trip(ModelSerializer):
 
 class ser_tarif(ModelSerializer):
     transports = ser_transport(read_only=True, many=True)
-    # number_of_day_id = ser_number_of_day()
+    number_of_day_id = ser_number_of_day()
 
     class Meta:
         model = tarif

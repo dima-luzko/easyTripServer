@@ -5,7 +5,7 @@ from .views import *
 
 urlpatterns = [
 
-    url(r'^cards/(?P<card_number>.+)/$', CardByNameView.as_view(), name='card_number'),
+    url(r'^card/(?P<card_number>.+)/$', CardByNameView.as_view(), name='card_number'),
     url(r'^transactions_of_card/(?P<card>.+)/$', TransactionsOfCardView.as_view(), name='transactions_of_card_id'),
     url(r'^transports/$', TransportView.as_view(), name='transports'),
     url(r'^transports/(?P<pk>[0-9]+)/?$', TransportIdView.as_view(), name='transports_id'),
