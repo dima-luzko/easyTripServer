@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'^transports/(?P<pk>[0-9]+)/?$', TransportIdView.as_view(), name='transports_id'),
     url(r'^number_of_days/$', NumberOfDaysView.as_view(), name='number_of_days'),
     url(r'^number_of_trips/$', NumberOfTripsView.as_view(), name='number_of_trips'),
-
-    url(r'^number_of_days_tarif/number_of_day_id/transports/?$',NumberOfDaysTarif1, name='number_of_day_id'),
+    url(r'^number_of_days_tarif/number_of_day_id/transports/?$',NumberOfDaysTarif, name='number_of_day_id'),
+    url(r'^number_of_days_tarif/number_of_trip_id/transports/?$',NumberOfTripTarif, name='number_of_day_id')
 ]
    
 
